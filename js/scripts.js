@@ -3,59 +3,69 @@ let orders = document.querySelectorAll('.order-now');
 let products = [
     {
         size: 'small',
-        crust: 'crispy',
+        crust: 'pizza1',
+        toppings: 'mushroom',
         price: 800,
         Ordered: 0
     },
     {
         size: 'small',
-        crust: 'stuffed',
+        crust: 'pizza2',
         price: 930,
         Ordered: 0
     },
     {
         size: 'small',
-        crust: 'glutenFree',
+        crust: 'pizza3',
         price: 750,
         Ordered: 0
     },
     {
         size: 'medium',
-        crust: 'crispy',
+        crust: 'pizza4',
         price: 1200,
         Ordered: 0
     },
     {
         size: 'medium',
-        crust: 'stuffed',
+        crust: 'pizza5',
         price: 1350,
         Ordered: 0
     },
     {
         size: 'medium',
-        crust: 'glutenFree',
+        crust: 'pizza6',
         price: 1150,
         Ordered: 0
     },
     {
         size: 'large',
-        crust: 'crispy',
+        crust: 'pizza7',
         price: 2000,
         Ordered: 0
     },
     {
         size: 'large',
-        crust: 'stuffed',
+        crust: 'pizza8',
         price: 2500,
         Ordered: 0
     },
     {
         size: 'large',
-        crust: 'glutenFree',
+        crust: 'pizza9',
         price: 1850,
         Ordered: 0
     }
 ]
+function totalCost(product) {
+    let orderCost = localStorage.getItem('totalCost');
+    if (orderCost != null) {
+       orderCost = parseInt(orderCost);
+        localStorage.setItem("totalCost", orderCost + product.price);
+    } else {
+        localStorage.setItem("totalCost", product.price);
+    }
+}
 
 for (let i=0; i < orders.length; i++) {
     orders[i].addEventListener('click', () => {
@@ -72,7 +82,6 @@ function onLoadOrderNumbers() {
 }
 
 function orderNumbers(product) {
-    console.log("The product clicked is", product);
     let productNumbers = localStorage.getItem('orderNumbers');
     localStorage.setItem('orderNumbers', 1);
     productNumbers = parseInt(productNumbers);
@@ -106,78 +115,75 @@ function setItems(product) {
             [product.crust]: product
         }
  }
- function totalCost(product) {
-     let orderCost = localStorage.getItem('totalCost');
-     if (orderCost != null) {
-        orderCost = parseInt(orderCost);
-         localStorage.setItem("totalCost", orderCost + product.price);
-     } else {
-         localStorage.setItem("totalCost", product.price);
-     }
- }
-    localStorage.setItem('productsOrdered', JSON.stringify(orderItems));
+ localStorage.setItem('productsOrdered', JSON.stringify(orderItems));
 }
+
 
 function displayOrder() {
     let orderItems = localStorage.getItem("productsOrdered");
     orderItems = JSON.parse(orderItems);
     let productContainer = document.querySelector('.products');
-    if( orderItems && buy) {
-        buy.innerHTML = '';
+    let orderCost = localStorage.getItem('totalCost');
+    if( orderItems && productContainer) {
+        productContainer.innerHTML = '';
         Object.values(orderItems).map(item => {
             productContainer.innerHTML += `
             <div class="product">
             <ion-icon name="close-circle"></ion-icon>
-            <img src="/css/${item.crust}.jpg">
+            <img src="/css/${item.crust}.jpeg">
             <span>${item.name}</span>
             </div>
-            <div class="price">Ksh${item.price}.00</div>
+            <div class="price">${item.price}</div>
             <div class="quantity">
             <ion-icon class = "decrease" name="chevron-down-circle-outline"></ion-icon>
             <span>${item.Ordered}</span>
             <ion-icon class = "increase" name="add-circle-outline"></ion-icon>
             </div>
             <div class="total">
-            Ksh${
+            Ksh.${
                 item.Ordered * item.price
             }.00
             </div>`;
             
 
         });
+        productContainer.innerHTML += `
+        <div class="basketTotalContainer">
+        <h4 class="basketTotalTitle">
+        Order Total:
+        </h4><br>
+        <h4 class="basketTotal">Ksh.<br> ${orderCost}.00 </h4>
+        `;
     }
 }
-
 
 onLoadOrderNumbers();
 displayOrder();
 
 
+//cart box
+const order = document.querySelector('.order');
+const orderBox = document.querySelector('.order-box');
+const orderClose = document.querySelector('.fa-close');
+order.addEventListener('click', function() {
+        orderBox.classList.add('active');
+        
+    });
+    orderClose.addEventListener('click', function() {
+        orderBox.classList.remove('active');
+    });
+
+    const orderSpan = document.querySelector('.order span');
+    // orderP.innerHTML = products;
+
+    const cardBoxTable = orderBox.querySelector('table');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// alert("Welcome Vincent")
-// // Crispy, Stuffed, Gluten-free
-
-
-// function Pizza(size,crust,toppings) {
-
-// this.size = size;
-// this.crust = crust;
-// this.toppings = toppings;
-// }
-  
-//   var Crunchy = new Pizza("large", "Stuffed", "mushroomSoup");
-//   console.log("I love Water")
-  
+// alert("Welcome Vincent"
+  const orderDelivery = document.querySelector(".input-group");
+  orderDelivery.addEventListener('click', function() {
+    alert("We will deliver the order for you, kindly enter your address");
+    prompt("enter your Full Name");
+    prompt("enter your Address");
+    
+});
