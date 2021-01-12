@@ -3,6 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+.delivery {
+    text-align: center;
+    background-color: rgba(109, 6, 6, 0.3);
+}
 
 nav {
     position: absolute;
@@ -140,7 +144,7 @@ header {
       text-align: center;
       font-size: xx-large;
       border-radius: 30%;
-      color: whitesmoke
+      color: wheat;
   }
   .footer {
       color: white;
@@ -399,4 +403,7 @@ cart box */
 }
 .products-container{
     padding-top: 100px;
+}
+.overlay {
+    background-color:  rgb(26, 1, 1);;
 }

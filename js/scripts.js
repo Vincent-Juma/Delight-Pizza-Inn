@@ -182,8 +182,9 @@ order.addEventListener('click', function() {
 // alert("Welcome Vincent"
   const orderDelivery = document.querySelector(".input-group");
   orderDelivery.addEventListener('click', function() {
-    alert("We will deliver the order for you, kindly enter your address");
-    prompt("enter your Full Name");
-    prompt("enter your Address");
+    alert("Thanks for confirming delivery means, kindly enter the order CODE and your address");
+    prompt("Enter Your Full Name");
+    prompt("Enter order CODE");
+    prompt("Enter Your Address");
     
 });
