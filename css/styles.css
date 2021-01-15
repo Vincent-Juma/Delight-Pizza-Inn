@@ -237,7 +237,7 @@ header {
       display: flex;
       align-items: center;
       justify-content: center;
-      background: url(/css/zoom1.jpg);
+      background: url("./zoom1.jpg");
       z-index: 99999;
       transition: 0.2s linear;
       transform: scale(0);
@@ -414,7 +414,7 @@ trials */
 	background: rgba(0, 0, 0, 0.8);
 	z-index: 99999;
 	transition: 0.3s linear;
-	transform: scale(0.5);
+	transform: scale(0);
 }
 .orderBox.active{
 	transform: scale(1);

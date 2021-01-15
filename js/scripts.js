@@ -161,7 +161,7 @@ onLoadOrderNumbers();
 displayOrder();
 
 
-//cart box
+//order box
 const order = document.querySelector('.order');
 const orderBox = document.querySelector('.order-box');
 const orderClose = document.querySelector('.fa-close');
@@ -179,7 +179,7 @@ order.addEventListener('click', function() {
     const cardBoxTable = orderBox.querySelector('table');
 
 
-// alert("Welcome Vincent"
+// alert("Welcome Vincent")
   const orderDelivery = document.querySelector(".input-group");
   orderDelivery.addEventListener('click', function() {
     alert("Thanks for confirming delivery means, kindly enter the order CODE and your address");
